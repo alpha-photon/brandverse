@@ -4,6 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Layout } from "@/components/Layout";
+import { Background3D } from "@/components/Background3D";
+import { Card3D } from "@/components/Card3D";
 import { toast } from "@/hooks/use-toast";
 import {
   Phone,
@@ -37,8 +39,10 @@ export default function Contact() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-24 bg-gradient-hero">
-        <div className="section-container">
+      <section className="py-24 relative overflow-hidden">
+        <Background3D variant="hero" />
+        
+        <div className="section-container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 animate-fade-in">
               <Sparkles className="h-4 w-4" />
@@ -57,8 +61,10 @@ export default function Contact() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-24 bg-card">
-        <div className="section-container">
+      <section className="py-24 bg-card relative overflow-hidden">
+        <Background3D variant="subtle" />
+        
+        <div className="section-container relative z-10">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Info */}
             <div className="animate-fade-in-left">
@@ -67,72 +73,74 @@ export default function Contact() {
               </h2>
 
               <div className="space-y-6 mb-10">
-                <a
-                  href="tel:8937888833"
-                  className="card-3d p-6 flex items-center gap-4 group"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-teal flex items-center justify-center shadow-glow-teal">
-                    <Phone className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Phone</p>
-                    <p className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                      8937888833
-                    </p>
-                  </div>
+                <a href="tel:8937888833" className="block">
+                  <Card3D variant="glass" className="p-6 flex items-center gap-4">
+                    <div className="icon-box w-12 h-12">
+                      <Phone className="h-5 w-5 text-primary-foreground" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Phone</p>
+                      <p className="font-semibold text-foreground">
+                        8937888833
+                      </p>
+                    </div>
+                  </Card3D>
                 </a>
 
-                <a
-                  href="mailto:support@thebrandversestudio.com"
-                  className="card-3d p-6 flex items-center gap-4 group"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-gold flex items-center justify-center shadow-glow-gold">
-                    <Mail className="h-5 w-5 text-accent-foreground" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Email</p>
-                    <p className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                      support@thebrandversestudio.com
-                    </p>
-                  </div>
+                <a href="mailto:support@thebrandversestudio.com" className="block">
+                  <Card3D variant="glass" className="p-6 flex items-center gap-4">
+                    <div className="icon-box-gold w-12 h-12">
+                      <Mail className="h-5 w-5 text-accent-foreground" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Email</p>
+                      <p className="font-semibold text-foreground">
+                        support@thebrandversestudio.com
+                      </p>
+                    </div>
+                  </Card3D>
                 </a>
 
                 <a
                   href="https://instagram.com/the_bvsofficial"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card-3d p-6 flex items-center gap-4 group"
+                  className="block"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-navy flex items-center justify-center">
-                    <Instagram className="h-5 w-5 text-secondary-foreground" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Instagram</p>
-                    <p className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                      @the_bvsofficial
-                    </p>
-                  </div>
+                  <Card3D variant="glass" className="p-6 flex items-center gap-4">
+                    <div className="icon-box-navy w-12 h-12">
+                      <Instagram className="h-5 w-5 text-secondary-foreground" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">Instagram</p>
+                      <p className="font-semibold text-foreground">
+                        @the_bvsofficial
+                      </p>
+                    </div>
+                  </Card3D>
                 </a>
               </div>
 
               {/* Image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-elevated">
-                <img
-                  src={contactImage}
-                  alt="Our support team"
-                  className="w-full h-64 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
-                <div className="absolute bottom-4 left-4 flex items-center gap-2 text-secondary-foreground">
-                  <MapPin className="h-4 w-4" />
-                  <span className="text-sm">Ready to help 24/7</span>
+              <Card3D variant="elevated" className="overflow-hidden">
+                <div className="relative">
+                  <img
+                    src={contactImage}
+                    alt="Our support team"
+                    className="w-full h-64 object-cover rounded-2xl"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/50 to-transparent rounded-2xl" />
+                  <div className="absolute bottom-4 left-4 flex items-center gap-2 text-secondary-foreground">
+                    <MapPin className="h-4 w-4" />
+                    <span className="text-sm">Ready to help 24/7</span>
+                  </div>
                 </div>
-              </div>
+              </Card3D>
             </div>
 
             {/* Contact Form */}
             <div className="animate-fade-in-right">
-              <div className="card-3d p-8 lg:p-10">
+              <Card3D variant="glow" className="p-8 lg:p-10">
                 <h3 className="font-heading text-xl font-semibold text-foreground mb-6">
                   Send Us a Message
                 </h3>
@@ -216,7 +224,7 @@ export default function Contact() {
                     )}
                   </Button>
                 </form>
-              </div>
+              </Card3D>
             </div>
           </div>
         </div>

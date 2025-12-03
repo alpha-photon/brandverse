@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/Layout";
+import { Background3D } from "@/components/Background3D";
+import { Card3D } from "@/components/Card3D";
 import {
   Handshake,
   Lightbulb,
@@ -16,22 +18,26 @@ const whyUs = [
   {
     icon: Handshake,
     title: "One-Stop Partner",
-    description: "Complete digital brand solutions under one roof",
+    description: "Complete digital brand solutions under one roof for seamless execution",
+    color: "teal" as const,
   },
   {
     icon: Target,
     title: "Programmatic Expertise",
-    description: "Advanced digital advertising & programmatic media",
+    description: "Advanced digital advertising & programmatic media that delivers ROI",
+    color: "gold" as const,
   },
   {
     icon: TrendingUp,
     title: "Business Impact",
-    description: "Strategies that deliver real, measurable results",
+    description: "Strategies that deliver real, measurable results you can track",
+    color: "teal" as const,
   },
   {
     icon: Heart,
     title: "Growth Partnership",
-    description: "We grow when you grow — your success is ours",
+    description: "We grow when you grow — your success is our ultimate mission",
+    color: "gold" as const,
   },
 ];
 
@@ -39,8 +45,10 @@ export default function About() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-24 bg-gradient-hero">
-        <div className="section-container">
+      <section className="py-24 relative overflow-hidden">
+        <Background3D variant="hero" />
+        
+        <div className="section-container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 animate-fade-in">
               <Sparkles className="h-4 w-4" />
@@ -59,18 +67,19 @@ export default function About() {
       </section>
 
       {/* Who We Are */}
-      <section className="py-24 bg-card">
-        <div className="section-container">
+      <section className="py-24 bg-card relative overflow-hidden">
+        <Background3D variant="subtle" />
+        
+        <div className="section-container relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="animate-fade-in-left">
-              <div className="relative rounded-2xl overflow-hidden shadow-elevated">
+              <Card3D variant="elevated" className="overflow-hidden">
                 <img
                   src={aboutImage}
                   alt="Our creative workspace"
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover rounded-2xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent" />
-              </div>
+              </Card3D>
             </div>
 
             <div className="space-y-8 animate-fade-in-right">
@@ -91,9 +100,9 @@ export default function About() {
                 </p>
               </div>
 
-              <div className="p-6 glass-card">
+              <Card3D variant="glass" className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-gold flex items-center justify-center shrink-0">
+                  <div className="icon-box-gold w-12 h-12 shrink-0">
                     <Lightbulb className="h-6 w-6 text-accent-foreground" />
                   </div>
                   <div>
@@ -107,15 +116,17 @@ export default function About() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </Card3D>
             </div>
           </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 bg-background">
-        <div className="section-container">
+      <section className="py-24 relative overflow-hidden">
+        <Background3D variant="mesh" />
+        
+        <div className="section-container relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
               Why Partner With Us
@@ -127,12 +138,13 @@ export default function About() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {whyUs.map((item, index) => (
-              <div
+              <Card3D
                 key={item.title}
-                className="card-3d p-8 flex items-start gap-6 opacity-0 animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" }}
+                variant="glow"
+                className="p-8 flex items-start gap-6 opacity-0 animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" } as React.CSSProperties}
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-teal flex items-center justify-center shrink-0 shadow-glow-teal">
+                <div className={`${item.color === 'teal' ? 'icon-box' : 'icon-box-gold'} w-14 h-14 shrink-0`}>
                   <item.icon className="h-7 w-7 text-primary-foreground" />
                 </div>
                 <div>
@@ -143,16 +155,17 @@ export default function About() {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </Card3D>
             ))}
           </div>
         </div>
       </section>
 
       {/* Mission Section */}
-      <section className="py-24 bg-gradient-navy relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-navy via-navy-light to-navy relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-teal/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-teal/10 rounded-full blur-3xl animate-pulse-soft" />
+          <div className="absolute top-0 right-0 w-72 h-72 bg-gold/10 rounded-full blur-3xl animate-pulse-soft animation-delay-200" />
         </div>
         
         <div className="section-container relative z-10 text-center">
