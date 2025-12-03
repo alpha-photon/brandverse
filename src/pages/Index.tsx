@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/Layout";
+import { Background3D } from "@/components/Background3D";
+import { Card3D } from "@/components/Card3D";
 import {
   Lightbulb,
   Target,
@@ -75,14 +77,9 @@ export default function Index() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center bg-gradient-hero overflow-hidden">
-        {/* Abstract 3D Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 right-20 w-72 h-72 bg-teal/10 rounded-full blur-3xl animate-pulse-soft" />
-          <div className="absolute bottom-20 left-20 w-96 h-96 bg-gold/10 rounded-full blur-3xl animate-pulse-soft animation-delay-300" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-navy/5 rounded-full blur-3xl" />
-        </div>
-
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        <Background3D variant="hero" />
+        
         <div className="section-container relative z-10 py-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Content */}
@@ -118,19 +115,19 @@ export default function Index() {
 
             {/* Hero Image */}
             <div className="relative animate-fade-in-right animation-delay-200">
-              <div className="relative rounded-2xl overflow-hidden shadow-elevated">
+              <Card3D variant="elevated" className="overflow-hidden">
                 <img
                   src={heroImage}
                   alt="Creative team collaborating"
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover rounded-2xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent" />
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent rounded-2xl" />
+              </Card3D>
               
               {/* Floating Card */}
-              <div className="absolute -bottom-6 -left-6 glass-card p-4 shadow-medium animate-float">
+              <Card3D variant="glass" className="absolute -bottom-6 -left-6 p-4 animate-float">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gradient-teal flex items-center justify-center">
+                  <div className="icon-box w-12 h-12">
                     <TrendingUp className="h-6 w-6 text-primary-foreground" />
                   </div>
                   <div>
@@ -138,15 +135,16 @@ export default function Index() {
                     <p className="text-2xl font-bold gradient-text">+180%</p>
                   </div>
                 </div>
-              </div>
+              </Card3D>
             </div>
           </div>
         </div>
       </section>
 
       {/* Tagline Block */}
-      <section className="py-20 bg-card">
-        <div className="section-container">
+      <section className="py-20 bg-card relative">
+        <Background3D variant="subtle" />
+        <div className="section-container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
               "We're not just an agency. We're your partner in shaping a brand story that{" "}
@@ -159,8 +157,10 @@ export default function Index() {
       </section>
 
       {/* Services Preview */}
-      <section className="py-24 bg-background">
-        <div className="section-container">
+      <section className="py-24 relative overflow-hidden">
+        <Background3D variant="gradient" />
+        
+        <div className="section-container relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
               Our Services
@@ -172,12 +172,13 @@ export default function Index() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div
+              <Card3D
                 key={service.title}
-                className="card-3d p-8 opacity-0 animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" }}
+                variant="glass"
+                className="p-8 opacity-0 animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" } as React.CSSProperties}
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-teal flex items-center justify-center mb-6 shadow-glow-teal">
+                <div className="icon-box w-14 h-14 mb-6">
                   <service.icon className="h-7 w-7 text-primary-foreground" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-foreground mb-3">
@@ -186,7 +187,7 @@ export default function Index() {
                 <p className="text-muted-foreground leading-relaxed">
                   {service.description}
                 </p>
-              </div>
+              </Card3D>
             ))}
           </div>
 
@@ -202,8 +203,10 @@ export default function Index() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 bg-muted/50">
-        <div className="section-container">
+      <section className="py-24 bg-muted/30 relative overflow-hidden">
+        <Background3D variant="mesh" />
+        
+        <div className="section-container relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
               Why Choose Brandverse?
@@ -215,29 +218,31 @@ export default function Index() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyChooseUs.map((item, index) => (
-              <div
+              <Card3D
                 key={item.title}
-                className="glass-card p-6 text-center opacity-0 animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" }}
+                variant="gradient"
+                className="p-6 text-center opacity-0 animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" } as React.CSSProperties}
               >
-                <div className="w-16 h-16 rounded-full bg-gradient-gold mx-auto mb-4 flex items-center justify-center shadow-glow-gold">
+                <div className="icon-box-gold w-16 h-16 rounded-full mx-auto mb-4">
                   <item.icon className="h-8 w-8 text-accent-foreground" />
                 </div>
                 <h3 className="font-heading font-semibold text-foreground mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground">{item.description}</p>
-              </div>
+              </Card3D>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA Banner */}
-      <section className="py-24 bg-gradient-navy relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-navy via-navy-light to-navy relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-teal/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-gold/20 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-teal/20 rounded-full blur-3xl animate-pulse-soft" />
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-gold/20 rounded-full blur-3xl animate-pulse-soft animation-delay-300" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-teal/5 rounded-full blur-3xl" />
         </div>
         
         <div className="section-container relative z-10 text-center">
