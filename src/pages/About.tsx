@@ -76,7 +76,7 @@ export default function About() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex items-center overflow-hidden max-w-full"
+        className="relative min-h-[85vh] flex items-center overflow-hidden max-w-full"
       >
         <Background3D variant="hero" />
         
@@ -94,10 +94,10 @@ export default function About() {
           }}
         />
         
-        <div className="section-container relative z-10 py-10 md:py-12 max-w-full">
-          <div className="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-center">
+        <div className="section-container relative z-10 py-6 md:py-8 max-w-full">
+          <div className="grid lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 xl:gap-10 items-center">
             {/* Content */}
-            <div className="space-y-8 max-w-2xl w-full overflow-hidden">
+            <div className="space-y-5 max-w-2xl w-full overflow-hidden">
               {/* Badge with animation */}
               <div
                 className={cn(
@@ -145,7 +145,7 @@ export default function About() {
 
               <div
                 className={cn(
-                  "flex flex-wrap gap-4 transition-all duration-1000 mt-6",
+                  "flex flex-wrap gap-4 transition-all duration-1000 mt-4",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
                 style={{ transitionDelay: "800ms" }}
@@ -178,7 +178,7 @@ export default function About() {
               {/* Stats Row */}
               <div
                 className={cn(
-                  "flex flex-wrap gap-8 pt-10 transition-all duration-1000",
+                  "flex flex-wrap gap-6 pt-6 transition-all duration-1000",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
                 style={{ transitionDelay: "1000ms" }}
@@ -318,7 +318,7 @@ export default function About() {
       </section>
 
       {/* Who We Are */}
-      <section className="pt-24 pb-24 relative overflow-hidden">
+      <section className="pt-12 pb-12 md:pt-16 md:pb-16 relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute inset-0">
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal/10 rounded-full blur-3xl" />
@@ -326,18 +326,18 @@ export default function About() {
         </div>
         
         <div className="section-container relative z-10 max-w-full">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
             {/* Left Column */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               <div>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium mb-6 border border-primary/20">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium mb-4 border border-primary/20">
                   <Sparkles className="h-4 w-4" />
                   <span>Our Story</span>
                 </div>
-                <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
+                <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
                   Who We <span className="gradient-text">Are</span>
                 </h2>
-                <p className="text-muted-foreground leading-relaxed mb-4 text-base">
+                <p className="text-muted-foreground leading-relaxed mb-3 text-base">
                   At Brandverse Studio, we believe every brand has a story waiting to be told — 
                   a story that connects, inspires, and builds lasting impact. We are a team of 
                   strategists, creatives, and digital experts passionate about transforming 
@@ -391,7 +391,7 @@ export default function About() {
             </div>
 
             {/* Right Column - Values Cards */}
-            <div className="space-y-5">
+            <div className="space-y-3">
               {[
                 { icon: Target, title: "Mission-Driven", desc: "Every project starts with purpose", color: "teal" },
                 { icon: TrendingUp, title: "Results-Focused", desc: "Measurable outcomes that matter", color: "teal" },
@@ -444,7 +444,7 @@ export default function About() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 relative overflow-hidden max-w-full">
+      <section className="py-12 md:py-16 relative overflow-hidden max-w-full">
         {/* Decorative elements */}
         <div className="absolute inset-0">
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal/10 rounded-full blur-3xl" />
@@ -452,12 +452,12 @@ export default function About() {
         </div>
         
         <div className="section-container relative z-10 max-w-full">
-          <div className="text-center max-w-3xl mx-auto mb-16 w-full px-2">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium mb-6 border border-primary/20">
+          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12 w-full px-2">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium mb-4 border border-primary/20">
               <Sparkles className="h-4 w-4" />
               <span>Why Choose Us</span>
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
               Why Partner <span className="gradient-text">With Us</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
@@ -465,7 +465,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
             {whyUs.map((item, index) => (
               <Card3D
                 key={item.title}
@@ -528,7 +528,7 @@ export default function About() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-32 md:py-40 relative overflow-hidden max-w-full">
+      <section className="py-16 md:py-24 relative overflow-hidden max-w-full">
         {/* Decorative elements */}
         <div className="absolute inset-0">
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal/10 rounded-full blur-3xl" />
@@ -538,13 +538,13 @@ export default function About() {
         <div className="section-container relative z-10 max-w-full">
           <div className="max-w-4xl mx-auto text-center w-full px-2">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium mb-8 animate-fade-in border border-primary/20">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium mb-6 animate-fade-in border border-primary/20">
               <Sparkles className="h-4 w-4" />
               <span>Our Mission</span>
             </div>
             
             {/* Main Heading */}
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight">
               To Transform Businesses Into{" "}
               <span className="relative inline-block">
                 <span className="relative z-10 gradient-text">Brands</span>
@@ -553,7 +553,7 @@ export default function About() {
             </h2>
             
             {/* Description */}
-            <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
               People <span className="text-foreground font-medium">love</span> and{" "}
               <span className="text-foreground font-medium">remember</span>.
             </p>

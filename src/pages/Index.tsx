@@ -122,49 +122,50 @@ export default function Index() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex items-center overflow-hidden max-w-full"
+        className="relative min-h-[90vh] sm:min-h-screen flex items-center overflow-hidden max-w-full px-4 sm:px-6"
       >
         <Background3D variant="hero" />
         
         {/* Animated gradient orbs that follow mouse */}
         <div
-          className="absolute top-1/4 right-1/4 w-96 h-96 bg-teal/20 dark:bg-teal/10 rounded-full blur-3xl transition-all duration-700 ease-out pointer-events-none"
+          className="absolute top-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-teal/20 dark:bg-teal/10 rounded-full blur-3xl transition-all duration-700 ease-out pointer-events-none"
           style={{
             transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
           }}
         />
         <div
-          className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-gold/15 dark:bg-gold/10 rounded-full blur-3xl transition-all duration-1000 ease-out pointer-events-none"
+          className="absolute bottom-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 bg-gold/15 dark:bg-gold/10 rounded-full blur-3xl transition-all duration-1000 ease-out pointer-events-none"
           style={{
             transform: `translate(${mousePosition.x * -0.3}px, ${mousePosition.y * -0.3}px)`,
           }}
         />
         
-        <div className="section-container relative z-10 py-10 md:py-12 max-w-full">
-          <div className="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-center">
+        <div className="section-container relative z-10 py-4 sm:py-8 md:py-10 lg:py-12 max-w-full">
+          <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-start">
             {/* Content */}
-            <div className="space-y-8 max-w-2xl w-full overflow-hidden">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8 max-w-2xl w-full overflow-hidden px-2 sm:px-0">
               {/* Badge with animation */}
               <div
                 className={cn(
-                  "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium transition-all duration-1000 border border-primary/20",
+                  "inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-xs sm:text-sm font-medium transition-all duration-1000 border border-primary/20",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
               >
-                <Sparkles className="h-4 w-4 animate-pulse" />
-                <span className="relative">
-                  Digital Branding Excellence
+                <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 animate-pulse" />
+                <span className="relative whitespace-nowrap">
+                  <span className="hidden sm:inline">Digital Branding Excellence</span>
+                  <span className="sm:hidden">Branding Excellence</span>
                   <span className="absolute inset-0 bg-primary/20 blur-xl animate-pulse" />
                 </span>
               </div>
               
               {/* Animated Headline */}
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight tracking-tight break-words overflow-hidden">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] sm:leading-tight tracking-tight break-words overflow-hidden">
                 {words.map((word, index) => (
                   <span
                     key={index}
                     className={cn(
-                      "inline-block transition-all duration-1000 md:whitespace-nowrap",
+                      "inline-block transition-all duration-1000",
                       isVisible
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-8",
@@ -173,14 +174,14 @@ export default function Index() {
                     style={{ transitionDelay: `${index * 200}ms` }}
                   >
                     {word}
-                    {index < words.length - 1 && <span className="inline-block w-2 md:w-3" />}
+                    {index < words.length - 1 && <span className="inline-block w-1.5 sm:w-2 md:w-3" />}
                   </span>
                 ))}
               </h1>
               
               <p
                 className={cn(
-                  "text-lg text-muted-foreground max-w-xl leading-relaxed transition-all duration-1000 mb-2",
+                  "text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed transition-all duration-1000 mb-2",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
                 style={{ transitionDelay: "600ms" }}
@@ -191,7 +192,7 @@ export default function Index() {
 
               <div
                 className={cn(
-                  "flex flex-wrap gap-4 transition-all duration-1000 mt-6",
+                  "flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 transition-all duration-1000 mt-4 sm:mt-6",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
                 style={{ transitionDelay: "800ms" }}
@@ -199,12 +200,12 @@ export default function Index() {
                 <Button
                   variant="hero"
                   asChild
-                  className="group relative overflow-hidden"
+                  className="group relative overflow-hidden w-full sm:w-auto"
                 >
                   <Link to="/contact">
-                    <span className="relative z-10 flex items-center gap-2">
+                    <span className="relative z-10 flex items-center justify-center gap-2 text-sm sm:text-base">
                     Work With Us
-                      <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
                     </span>
                     <span className="absolute inset-0 bg-gradient-to-r from-teal-light to-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   </Link>
@@ -212,10 +213,10 @@ export default function Index() {
                 <Button
                   variant="hero-outline"
                   asChild
-                  className="group relative overflow-hidden"
+                  className="group relative overflow-hidden w-full sm:w-auto"
                 >
                   <Link to="/services">
-                    <span className="relative z-10">Explore Our Services</span>
+                    <span className="relative z-10 text-sm sm:text-base">Explore Our Services</span>
                     <span className="absolute inset-0 bg-muted/50 dark:bg-muted/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   </Link>
                 </Button>
@@ -224,7 +225,7 @@ export default function Index() {
               {/* Stats Row */}
               <div
                 className={cn(
-                  "flex flex-wrap gap-8 pt-10 transition-all duration-1000",
+                  "flex flex-wrap gap-4 sm:gap-6 md:gap-8 pt-4 sm:pt-6 md:pt-10 transition-all duration-1000",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
                 style={{ transitionDelay: "1000ms" }}
@@ -235,10 +236,10 @@ export default function Index() {
                   { value: "50+", label: "Awards" },
                 ].map((stat, index) => (
                   <div key={index} className="group">
-                    <p className="text-3xl font-bold gradient-text group-hover:scale-110 transition-transform duration-300">
+                    <p className="text-2xl sm:text-3xl font-bold gradient-text group-hover:scale-110 transition-transform duration-300">
                       {stat.value}
                     </p>
-                    <p className="text-sm text-muted-foreground">{stat.label}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -247,7 +248,7 @@ export default function Index() {
             {/* Hero SVG Illustration */}
             <div
               className={cn(
-                "relative transition-all duration-1000 lg:ml-auto lg:mr-0 w-full",
+                "relative transition-all duration-1000 lg:ml-auto lg:mr-0 w-full mt-4 sm:mt-6 md:mt-8 lg:mt-0",
                 isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
               )}
               style={{
@@ -255,14 +256,15 @@ export default function Index() {
               }}
             >
               {/* Decorative background elements */}
-              <div className="absolute -inset-4 bg-gradient-to-br from-teal/20 via-transparent to-gold/20 rounded-3xl blur-2xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
+              <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-br from-teal/20 via-transparent to-gold/20 rounded-3xl blur-2xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
               
-              <div className="relative w-full min-h-[500px] md:min-h-[600px] flex items-center justify-center p-2">
+              <div className="relative w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-start justify-center p-2 sm:p-4 lg:pt-[3.5rem] xl:pt-[4.5rem]">
                   {/* Statistics Dashboard SVG */}
                   <svg
                     viewBox="0 0 600 450"
-                    className="w-full h-full max-w-4xl scale-110 md:scale-125"
+                    className="w-full h-full max-w-4xl scale-75 sm:scale-90 md:scale-100 lg:scale-110 xl:scale-125"
                     xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid meet"
                   >
                     <defs>
                       <linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -280,7 +282,7 @@ export default function Index() {
                     
                     {/* Statistics Cards */}
                     {/* Card 1: Projects */}
-                    <g transform="translate(50, 50)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
+                    <g transform="translate(50, 20)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
                       <rect x="0" y="0" width="140" height="100" rx="12" fill="hsl(var(--card))" stroke="url(#statGrad)" strokeWidth="2" opacity="0.9" className="group-hover:opacity-100 transition-opacity" />
                       <circle cx="70" cy="30" r="20" fill="url(#statGrad)" opacity="0.2" />
                       <path d="M60 30 L65 35 L80 20" stroke="url(#statGrad)" strokeWidth="3" fill="none" strokeLinecap="round" />
@@ -289,7 +291,7 @@ export default function Index() {
                     </g>
                     
                     {/* Card 2: Satisfaction */}
-                    <g transform="translate(230, 50)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
+                    <g transform="translate(230, 20)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
                       <rect x="0" y="0" width="140" height="100" rx="12" fill="hsl(var(--card))" stroke="url(#statGrad)" strokeWidth="2" opacity="0.9" className="group-hover:opacity-100 transition-opacity" />
                       <circle cx="70" cy="30" r="20" fill="url(#statGrad)" opacity="0.2" />
                       <path d="M55 30 Q70 20 85 30" stroke="url(#statGrad)" strokeWidth="3" fill="none" strokeLinecap="round" />
@@ -298,7 +300,7 @@ export default function Index() {
                     </g>
                     
                     {/* Card 3: Awards */}
-                    <g transform="translate(410, 50)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
+                    <g transform="translate(410, 20)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
                       <rect x="0" y="0" width="140" height="100" rx="12" fill="hsl(var(--card))" stroke="url(#statGrad)" strokeWidth="2" opacity="0.9" className="group-hover:opacity-100 transition-opacity" />
                       <circle cx="70" cy="30" r="20" fill="url(#statGrad)" opacity="0.2" />
                       <path d="M70 15 L75 25 L85 20 L80 30 L90 35 L70 32 L50 35 L60 30 L55 20 L65 25 Z" fill="url(#statGrad)" />
@@ -307,7 +309,7 @@ export default function Index() {
                     </g>
                     
                     {/* Central Growth Chart */}
-                    <g transform="translate(150, 200)" className="group-hover:scale-105 transition-transform duration-500">
+                    <g transform="translate(150, 170)" className="group-hover:scale-105 transition-transform duration-500">
                       {/* Chart Background */}
                       <rect x="0" y="0" width="300" height="200" rx="16" fill="hsl(var(--card))" stroke="url(#statGrad)" strokeWidth="2" opacity="0.9" />
                       
@@ -361,35 +363,35 @@ export default function Index() {
       </section>
 
       {/* Services Preview */}
-      <section className="pt-32 pb-0 relative overflow-hidden max-w-full">
+      <section className="pt-8 sm:pt-12 md:pt-16 pb-0 relative overflow-hidden max-w-full px-4 sm:px-6">
         
         {/* Decorative elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-gold/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-teal/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/4 w-48 h-48 sm:w-72 sm:h-72 bg-gold/10 rounded-full blur-3xl" />
         </div>
         
         <div className="section-container relative z-10 max-w-full">
-          <div className="text-center max-w-3xl mx-auto mb-16 w-full px-2">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium mb-6 border border-primary/20">
-              <Sparkles className="h-4 w-4" />
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 md:mb-12 w-full px-2">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-xs sm:text-sm font-medium mb-3 sm:mb-4 md:mb-6 border border-primary/20">
+              <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
               <span>What We Offer</span>
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4 md:mb-6 px-2">
               Our <span className="gradient-text">Services</span>
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed px-2">
               Comprehensive digital solutions tailored to elevate your brand and drive measurable results
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
             {services.map((service, index) => (
               <Card3D
                 key={service.title}
                 variant="glass"
                 className={cn(
-                  "group relative p-8 h-full flex flex-col opacity-0 animate-fade-in overflow-hidden",
+                  "group relative p-6 sm:p-8 h-full flex flex-col opacity-0 animate-fade-in overflow-hidden",
                   "hover:scale-[1.03] hover:-translate-y-2 transition-all duration-700 ease-out",
                   "border-2 border-border/30 hover:border-primary/30",
                   "shadow-lg hover:shadow-2xl hover:shadow-primary/10",
@@ -415,23 +417,23 @@ export default function Index() {
                 {/* Content */}
                 <div className="relative z-10 flex flex-col h-full">
                   {/* Icon with enhanced animation */}
-                  <div className="relative mb-6">
-                    <div className="icon-box w-16 h-16 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 ease-out relative">
-                      <service.icon className="h-8 w-8 text-white group-hover:text-white transition-all duration-500 group-hover:scale-110" />
+                  <div className="relative mb-4 sm:mb-6">
+                    <div className="icon-box w-14 h-14 sm:w-16 sm:h-16 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 ease-out relative">
+                      <service.icon className="h-7 w-7 sm:h-8 sm:w-8 text-white group-hover:text-white transition-all duration-500 group-hover:scale-110" />
                       {/* Icon glow */}
                       <div className="absolute inset-0 bg-primary/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
                     </div>
                     {/* Decorative circle */}
-                    <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-primary/20 opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-500 blur-sm" />
+                    <div className="absolute -top-2 -right-2 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary/20 opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-500 blur-sm" />
                   </div>
                   
                   {/* Title with enhanced styling */}
-                  <h3 className="font-heading text-xl md:text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-all duration-500 leading-tight">
+                  <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-3 sm:mb-4 group-hover:text-primary transition-all duration-500 leading-tight">
                     {service.title}
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed mb-6 text-sm md:text-base group-hover:text-foreground/90 transition-colors duration-500 flex-grow">
+                  <p className="text-muted-foreground leading-relaxed mb-4 sm:mb-6 text-sm sm:text-base group-hover:text-foreground/90 transition-colors duration-500 flex-grow">
                     {service.description}
                   </p>
                   
@@ -468,17 +470,17 @@ export default function Index() {
             ))}
           </div>
 
-          <div className="text-center mt-16 pb-24">
+          <div className="text-center mt-6 sm:mt-8 md:mt-12 pb-8 sm:pb-12 md:pb-16">
             <Button 
               variant="hero" 
               size="lg" 
               asChild
-              className="group relative overflow-hidden"
+              className="group relative overflow-hidden w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6"
             >
               <Link to="/services">
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex items-center justify-center gap-2 text-sm sm:text-base">
                   Explore All Services
-                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
                 </span>
                 <span className="absolute inset-0 bg-gradient-to-r from-teal-light to-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </Link>
@@ -488,23 +490,23 @@ export default function Index() {
       </section>
 
       {/* Tagline Block */}
-      <section className="pt-24 pb-24 md:pb-32 relative overflow-hidden max-w-full">
+      <section className="pt-6 sm:pt-8 md:pt-10 pb-8 sm:pb-12 md:pb-16 lg:pb-20 relative overflow-hidden max-w-full px-4 sm:px-6">
         
         {/* Decorative elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal/10 rounded-full blur-3xl animate-pulse-soft" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gold/10 rounded-full blur-3xl animate-pulse-soft animation-delay-300" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-teal/5 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-teal/10 rounded-full blur-3xl animate-pulse-soft" />
+          <div className="absolute bottom-0 right-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-gold/10 rounded-full blur-3xl animate-pulse-soft animation-delay-300" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] bg-teal/5 rounded-full blur-3xl" />
         </div>
         
-        <div className="section-container relative z-10 py-16 md:py-20 max-w-full">
-          <div className="max-w-5xl mx-auto w-full px-2">
+        <div className="section-container relative z-10 py-4 sm:py-6 md:py-8 lg:py-12 max-w-full">
+          <div className="max-w-5xl mx-auto w-full px-2 sm:px-4">
             {/* Quote Icon */}
-            <div className="flex justify-center mb-12 animate-fade-in">
+            <div className="flex justify-center mb-4 sm:mb-6 md:mb-8 animate-fade-in">
               <div className="relative group">
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500" />
-                <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 backdrop-blur-sm border border-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                  <svg className="w-10 h-10 md:w-12 md:h-12 text-primary group-hover:scale-110 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24">
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 backdrop-blur-sm border border-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-primary/20">
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-primary group-hover:scale-110 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.984zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h3.983v10h-9.984z"/>
                   </svg>
                 </div>
@@ -512,74 +514,74 @@ export default function Index() {
             </div>
             
             {/* Quote Text */}
-            <blockquote className="text-3xl md:text-4xl lg:text-5xl leading-relaxed font-light text-foreground animate-fade-in animation-delay-100">
-              <p className="mb-8">
+            <blockquote className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-relaxed sm:leading-relaxed font-light text-foreground animate-fade-in animation-delay-100 text-center">
+              <p className="mb-6 sm:mb-8 md:mb-10">
                 <span className="text-muted-foreground">We're not just an agency. We're your partner in shaping a brand story that</span>{" "}
                 <span className="relative inline-block group">
                   <span className="text-teal font-bold relative z-10">inspires trust</span>
-                  <span className="absolute -bottom-2 left-0 right-0 h-2 bg-teal/30 rounded-full blur-sm group-hover:bg-teal/50 transition-all duration-300" />
-                  <span className="absolute -bottom-1 left-0 right-0 h-1 bg-teal/60 rounded-full" />
+                  <span className="absolute -bottom-1 sm:-bottom-2 left-0 right-0 h-1 sm:h-2 bg-teal/30 rounded-full blur-sm group-hover:bg-teal/50 transition-all duration-300" />
+                  <span className="absolute -bottom-0.5 sm:-bottom-1 left-0 right-0 h-0.5 sm:h-1 bg-teal/60 rounded-full" />
                 </span>
                 {", builds "}
                 <span className="relative inline-block group">
                   <span className="text-primary font-bold relative z-10">loyalty</span>
-                  <span className="absolute -bottom-2 left-0 right-0 h-2 bg-primary/30 rounded-full blur-sm group-hover:bg-primary/50 transition-all duration-300" />
-                  <span className="absolute -bottom-1 left-0 right-0 h-1 bg-primary/60 rounded-full" />
+                  <span className="absolute -bottom-1 sm:-bottom-2 left-0 right-0 h-1 sm:h-2 bg-primary/30 rounded-full blur-sm group-hover:bg-primary/50 transition-all duration-300" />
+                  <span className="absolute -bottom-0.5 sm:-bottom-1 left-0 right-0 h-0.5 sm:h-1 bg-primary/60 rounded-full" />
                 </span>
                 {", and drives "}
                 <span className="relative inline-block group">
                   <span className="text-gold font-bold relative z-10">real impact</span>
-                  <span className="absolute -bottom-2 left-0 right-0 h-2 bg-gold/30 rounded-full blur-sm group-hover:bg-gold/50 transition-all duration-300" />
-                  <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gold/60 rounded-full" />
+                  <span className="absolute -bottom-1 sm:-bottom-2 left-0 right-0 h-1 sm:h-2 bg-gold/30 rounded-full blur-sm group-hover:bg-gold/50 transition-all duration-300" />
+                  <span className="absolute -bottom-0.5 sm:-bottom-1 left-0 right-0 h-0.5 sm:h-1 bg-gold/60 rounded-full" />
                 </span>
                 {"."}
               </p>
             </blockquote>
             
             {/* Author/Attribution */}
-            <div className="mt-12 flex items-center justify-center gap-4 animate-fade-in animation-delay-200">
-              <div className="h-px w-20 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <p className="text-base text-muted-foreground font-semibold">Brandverse Studio</p>
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse animation-delay-300" />
+            <div className="mt-4 sm:mt-6 md:mt-8 flex items-center justify-center gap-3 sm:gap-4 animate-fade-in animation-delay-200">
+              <div className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/5 border border-primary/10">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary animate-pulse" />
+                <p className="text-sm sm:text-base text-muted-foreground font-semibold">Brandverse Studio</p>
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary animate-pulse animation-delay-300" />
               </div>
-              <div className="h-px w-20 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+              <div className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="pt-24 pb-24 relative overflow-hidden max-w-full">
+      <section className="pt-8 sm:pt-12 md:pt-16 pb-8 sm:pb-12 md:pb-16 relative overflow-hidden max-w-full px-4 sm:px-6">
         
         {/* Decorative elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-1/4 w-72 h-72 bg-teal/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-gold/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-1/4 w-48 h-48 sm:w-72 sm:h-72 bg-teal/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-gold/10 rounded-full blur-3xl" />
         </div>
         
         <div className="section-container relative z-10 max-w-full">
-          <div className="text-center max-w-3xl mx-auto mb-16 w-full px-2">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium mb-6 border border-primary/20">
-              <Sparkles className="h-4 w-4" />
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 md:mb-12 w-full px-2">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-xs sm:text-sm font-medium mb-3 sm:mb-4 md:mb-6 border border-primary/20">
+              <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
               <span>Why Choose Us</span>
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4 md:mb-6 px-2">
               Why Choose <span className="gradient-text">Brandverse?</span>
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed px-2">
               What sets us apart in the digital landscape
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
             {whyChooseUs.map((item, index) => (
               <Card3D
                 key={item.title}
                 variant="glass"
                 className={cn(
-                  "group relative p-8 text-center opacity-0 animate-fade-in overflow-hidden h-full flex flex-col items-center",
+                  "group relative p-6 sm:p-8 text-center opacity-0 animate-fade-in overflow-hidden h-full flex flex-col items-center",
                   "hover:scale-[1.03] hover:-translate-y-2 transition-all duration-700 ease-out",
                   "border-2 border-border/30 hover:border-primary/30",
                   "shadow-lg hover:shadow-2xl hover:shadow-primary/10",
@@ -599,23 +601,23 @@ export default function Index() {
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 via-gold/10 to-primary/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-700 -z-10" />
                 
                 {/* Icon with enhanced styling */}
-                <div className="relative z-10 mb-6">
-                  <div className="icon-box-gold w-20 h-20 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 ease-out relative flex items-center justify-center">
-                    <item.icon className="h-10 w-10 text-white group-hover:text-white transition-all duration-500 group-hover:scale-110" />
+                <div className="relative z-10 mb-4 sm:mb-6">
+                  <div className="icon-box-gold w-16 h-16 sm:w-20 sm:h-20 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 ease-out relative flex items-center justify-center">
+                    <item.icon className="h-8 w-8 sm:h-10 sm:w-10 text-white group-hover:text-white transition-all duration-500 group-hover:scale-110" />
                     {/* Icon glow */}
                     <div className="absolute inset-0 bg-gold/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
                   </div>
                   {/* Decorative circles */}
-                  <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gold/20 opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-500 blur-sm" />
-                  <div className="absolute -bottom-2 -left-2 w-4 h-4 rounded-full bg-primary/20 opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-500 blur-sm animation-delay-200" />
+                  <div className="absolute -top-2 -right-2 w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-gold/20 opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-500 blur-sm" />
+                  <div className="absolute -bottom-2 -left-2 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-primary/20 opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-500 blur-sm animation-delay-200" />
                 </div>
                 
                 {/* Content */}
                 <div className="relative z-10 flex-1 flex flex-col items-center">
-                  <h3 className="font-heading text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-all duration-500">
+                  <h3 className="font-heading text-lg sm:text-xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-all duration-500">
                     {item.title}
                   </h3>
-                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed group-hover:text-foreground/90 transition-colors duration-500">
+                  <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed group-hover:text-foreground/90 transition-colors duration-500 px-2">
                     {item.description}
                   </p>
                 </div>
@@ -633,50 +635,50 @@ export default function Index() {
       </section>
 
       {/* CTA Banner */}
-      <section className="py-32 md:py-40 relative overflow-hidden max-w-full">
+      <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 relative overflow-hidden max-w-full px-4 sm:px-6">
         
         {/* Decorative elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-gold/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-teal/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/4 w-48 h-48 sm:w-72 sm:h-72 bg-gold/10 rounded-full blur-3xl" />
         </div>
         
         <div className="section-container relative z-10 max-w-full">
-          <div className="max-w-4xl mx-auto text-center w-full px-2">
+          <div className="max-w-4xl mx-auto text-center w-full px-2 sm:px-4">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium mb-8 animate-fade-in border border-primary/20">
-              <Sparkles className="h-4 w-4" />
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-xs sm:text-sm font-medium mb-4 sm:mb-6 md:mb-8 animate-fade-in border border-primary/20">
+              <Sparkles className="h-3 w-3 sm:h-4 sm:w-4" />
               <span>Let's Get Started</span>
             </div>
             
             {/* Main Heading */}
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-3 sm:mb-4 md:mb-6 leading-tight px-2">
               Ready to Build Your{" "}
               <span className="relative inline-block">
                 <span className="relative z-10 gradient-text">Brand?</span>
-                <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-teal/50 via-gold/50 to-teal/50 blur-xl opacity-60" />
+                <span className="absolute -bottom-1 sm:-bottom-2 left-0 right-0 h-2 sm:h-3 bg-gradient-to-r from-teal/50 via-gold/50 to-teal/50 blur-xl opacity-60" />
               </span>
           </h2>
             
             {/* Description */}
-            <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="text-muted-foreground text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-6 sm:mb-8 md:mb-12 leading-relaxed px-2">
             Let's create something extraordinary together. Transform your vision into a brand 
               that people <span className="text-foreground font-medium">love</span> and{" "}
               <span className="text-foreground font-medium">remember</span>.
             </p>
             
             {/* CTA Button */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
               <Button 
                 variant="hero" 
                 size="lg"
                 asChild
-                className="group relative overflow-hidden px-8 py-6 text-lg shadow-2xl shadow-teal/20 hover:shadow-teal/30 transition-all duration-300"
+                className="group relative overflow-hidden w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg shadow-2xl shadow-teal/20 hover:shadow-teal/30 transition-all duration-300"
               >
             <Link to="/contact">
-                  <span className="relative z-10 flex items-center gap-3">
+                  <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
               Let's Build Your Brand
-                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
                   </span>
                   <span className="absolute inset-0 bg-gradient-to-r from-teal-light to-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </Link>
@@ -686,7 +688,7 @@ export default function Index() {
                 variant="hero-outline" 
                 size="lg"
                 asChild
-                className="px-8 py-6 text-lg transition-all duration-300"
+                className="w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg transition-all duration-300"
               >
                 <Link to="/services">
                   Explore Our Services
