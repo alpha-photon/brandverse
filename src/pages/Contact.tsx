@@ -7,6 +7,7 @@ import { Layout } from "@/components/Layout";
 import { Background3D } from "@/components/Background3D";
 import { Card3D } from "@/components/Card3D";
 import { toast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 import {
   Phone,
   Mail,
@@ -15,44 +16,132 @@ import {
   MapPin,
   Sparkles,
 } from "lucide-react";
-import contactImage from "@/assets/contact-support.jpg";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Google Maps Embed URL
+  // Location: Sector 137, Noida, Uttar Pradesh 201304
+  // Link: https://maps.app.goo.gl/jRTWwi6TomToCA527
+  const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7012.151214620158!2d77.40393059412976!3d28.507372880985372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce8f6ef43af1f%3A0x6275b6af8ccbafd6!2sSector%20137%2C%20Noida%2C%20Uttar%20Pradesh%20201304!5e0!3m2!1sen!2sin!4v1764919643955!5m2!1sen!2sin";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
     
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+    const data = {
+      firstName: formData.get("firstName") as string,
+      lastName: formData.get("lastName") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string || "Not provided",
+      service: formData.get("service") as string || "Not specified",
+      message: formData.get("message") as string,
+    };
+
+    try {
+      // Using Formspree or EmailJS - for now using direct email approach
+      // You can set up Formspree at https://formspree.io and replace the action URL
+      // Or use EmailJS for more control
+      
+      const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+      
+      if (formspreeEndpoint) {
+        // Using Formspree
+        const response = await fetch(formspreeEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: `${data.firstName} ${data.lastName}`,
+            email: data.email,
+            phone: data.phone,
+            service: data.service,
+            message: data.message,
+            _to: "divyanshrohil28@gmail.com",
+          }),
+        });
+
+        if (response.ok) {
+          toast({
+            title: "Message Sent!",
+            description: "We'll get back to you within 24 hours.",
+          });
+          form.reset();
+        } else {
+          throw new Error("Form submission failed");
+        }
+      } else {
+        // Fallback: Use mailto with pre-filled form
+        const subject = `Contact Form Submission from ${data.firstName} ${data.lastName}`;
+        const body = `
+Name: ${data.firstName} ${data.lastName}
+Email: ${data.email}
+Phone: ${data.phone}
+Service Interested In: ${data.service}
+
+Message:
+${data.message}
+        `.trim();
+
+        const mailtoLink = `mailto:divyanshrohil28@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
+        
+        toast({
+          title: "Email Client Opening",
+          description: "Your email client will open with the message. Please click send.",
+        });
+        
+        form.reset();
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      
+      // Final fallback to mailto
+      const subject = `Contact Form Submission from ${data.firstName} ${data.lastName}`;
+      const body = `
+Name: ${data.firstName} ${data.lastName}
+Email: ${data.email}
+Phone: ${data.phone}
+Service Interested In: ${data.service}
+
+Message:
+${data.message}
+      `.trim();
+
+      const mailtoLink = `mailto:divyanshrohil28@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoLink;
+      
+      toast({
+        title: "Using Email Client",
+        description: "Opening your email client. Please send the message.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="py-24 relative overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center overflow-hidden max-w-full">
         <Background3D variant="hero" />
         
-        <div className="section-container relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 animate-fade-in">
+        <div className="section-container relative z-10 py-10 md:py-12 max-w-full">
+          <div className="max-w-3xl mx-auto text-center w-full px-2">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium mb-6 animate-fade-in border border-primary/20">
               <Sparkles className="h-4 w-4" />
-              Contact Us
+              <span>Contact Us</span>
             </div>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6 animate-fade-in animation-delay-100">
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 animate-fade-in animation-delay-100 leading-tight">
               Let's Start a{" "}
               <span className="gradient-text">Conversation</span>
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed animate-fade-in animation-delay-200">
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed animate-fade-in animation-delay-200">
               Have a project in mind? We'd love to hear about it. Get in touch and 
               let's create something amazing together.
             </p>
@@ -61,43 +150,85 @@ export default function Contact() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-24 bg-card relative overflow-hidden">
-        <Background3D variant="subtle" />
+      <section className="pt-24 pb-24 bg-muted/30 relative overflow-hidden max-w-full">
+        <Background3D variant="mesh" />
         
-        <div className="section-container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16">
+        <div className="section-container relative z-10 max-w-full">
+          <div className="grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 xl:gap-16">
             {/* Contact Info */}
             <div className="animate-fade-in-left">
               <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-8">
                 Get In Touch
               </h2>
 
-              <div className="space-y-6 mb-10">
-                <a href="tel:8937888833" className="block">
-                  <Card3D variant="glass" className="p-6 flex items-center gap-4">
-                    <div className="icon-box w-12 h-12">
-                      <Phone className="h-5 w-5 text-primary-foreground" />
+              <div className="space-y-5 mb-8">
+                <a href="tel:8937888833" className="block group">
+                  <Card3D 
+                    variant="glass" 
+                    className={cn(
+                      "p-6 flex items-center gap-4 relative overflow-hidden",
+                      "hover:scale-[1.02] hover:-translate-y-1 transition-all duration-700 ease-out",
+                      "border-2 border-border/30 hover:border-primary/30",
+                      "shadow-lg hover:shadow-2xl hover:shadow-primary/10"
+                    )}
+                  >
+                    {/* Shimmer effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Phone</p>
-                      <p className="font-semibold text-foreground">
+                    
+                    {/* Glow effect */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-700 -z-10" />
+                    
+                    <div className="icon-box w-12 h-12 shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative flex items-center justify-center">
+                      <Phone className="h-5 w-5 text-white group-hover:text-white transition-all duration-500" />
+                      {/* Icon glow */}
+                      <div className="absolute inset-0 bg-primary/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                    </div>
+                    <div className="relative z-10">
+                      <p className="text-sm text-muted-foreground mb-0.5 group-hover:text-foreground/70 transition-colors">Phone</p>
+                      <p className="font-semibold text-foreground group-hover:text-primary transition-colors duration-500">
                         8937888833
                       </p>
                     </div>
+                    
+                    {/* Corner accent */}
+                    <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                   </Card3D>
                 </a>
 
-                <a href="mailto:support@thebrandversestudio.com" className="block">
-                  <Card3D variant="glass" className="p-6 flex items-center gap-4">
-                    <div className="icon-box-gold w-12 h-12">
-                      <Mail className="h-5 w-5 text-accent-foreground" />
+                <a href="mailto:support@thebrandversestudio.com" className="block group">
+                  <Card3D 
+                    variant="glass" 
+                    className={cn(
+                      "p-6 flex items-center gap-4 relative overflow-hidden",
+                      "hover:scale-[1.02] hover:-translate-y-1 transition-all duration-700 ease-out",
+                      "border-2 border-border/30 hover:border-gold/30",
+                      "shadow-lg hover:shadow-2xl hover:shadow-gold/10"
+                    )}
+                  >
+                    {/* Shimmer effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Email</p>
-                      <p className="font-semibold text-foreground">
+                    
+                    {/* Glow effect */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-700 -z-10" />
+                    
+                    <div className="icon-box-gold w-12 h-12 shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative flex items-center justify-center">
+                      <Mail className="h-5 w-5 text-white group-hover:text-white transition-all duration-500" />
+                      {/* Icon glow */}
+                      <div className="absolute inset-0 bg-gold/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                    </div>
+                    <div className="relative z-10">
+                      <p className="text-sm text-muted-foreground mb-0.5 group-hover:text-foreground/70 transition-colors">Email</p>
+                      <p className="font-semibold text-foreground group-hover:text-primary transition-colors duration-500 break-all text-sm">
                         support@thebrandversestudio.com
                       </p>
                     </div>
+                    
+                    {/* Corner accent */}
+                    <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-gold/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                   </Card3D>
                 </a>
 
@@ -105,34 +236,73 @@ export default function Contact() {
                   href="https://instagram.com/the_bvsofficial"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block"
+                  className="block group"
                 >
-                  <Card3D variant="glass" className="p-6 flex items-center gap-4">
-                    <div className="icon-box-navy w-12 h-12">
-                      <Instagram className="h-5 w-5 text-secondary-foreground" />
+                  <Card3D 
+                    variant="glass" 
+                    className={cn(
+                      "p-6 flex items-center gap-4 relative overflow-hidden",
+                      "hover:scale-[1.02] hover:-translate-y-1 transition-all duration-700 ease-out",
+                      "border-2 border-border/30 hover:border-navy/30",
+                      "shadow-lg hover:shadow-2xl hover:shadow-navy/10"
+                    )}
+                  >
+                    {/* Shimmer effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Instagram</p>
-                      <p className="font-semibold text-foreground">
+                    
+                    {/* Glow effect */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-navy/20 via-navy/10 to-navy/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-700 -z-10" />
+                    
+                    <div className="icon-box-navy w-12 h-12 shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative flex items-center justify-center">
+                      <Instagram className="h-5 w-5 text-white group-hover:text-white transition-all duration-500" />
+                      {/* Icon glow */}
+                      <div className="absolute inset-0 bg-navy/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                    </div>
+                    <div className="relative z-10">
+                      <p className="text-sm text-muted-foreground mb-0.5 group-hover:text-foreground/70 transition-colors">Instagram</p>
+                      <p className="font-semibold text-foreground group-hover:text-primary transition-colors duration-500">
                         @the_bvsofficial
                       </p>
                     </div>
+                    
+                    {/* Corner accent */}
+                    <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-navy/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                   </Card3D>
                 </a>
               </div>
 
-              {/* Image */}
-              <Card3D variant="elevated" className="overflow-hidden">
-                <div className="relative">
-                  <img
-                    src={contactImage}
-                    alt="Our support team"
-                    className="w-full h-64 object-cover rounded-2xl"
+              {/* Google Map */}
+              <Card3D 
+                variant="elevated" 
+                className="overflow-hidden group hover:scale-[1.02] transition-all duration-700"
+              >
+                <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden">
+                  {/* 
+                    To get the embed URL:
+                    1. Go to https://www.google.com/maps
+                    2. Search for your location
+                    3. Click "Share" → "Embed a map"
+                    4. Copy the iframe src URL and replace the one below
+                  */}
+                  <iframe
+                    src={mapEmbedUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="rounded-2xl"
+                    title="Brandverse Studio Location"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/50 to-transparent rounded-2xl" />
-                  <div className="absolute bottom-4 left-4 flex items-center gap-2 text-secondary-foreground">
-                    <MapPin className="h-4 w-4" />
-                    <span className="text-sm">Ready to help 24/7</span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent rounded-2xl pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-background/90 backdrop-blur-sm px-3 py-2 rounded-lg group-hover:translate-y-[-4px] transition-transform duration-500 shadow-lg border border-border/50">
+                    <div className="icon-box w-8 h-8 group-hover:scale-110 transition-transform duration-500">
+                      <MapPin className="h-4 w-4 text-white" />
+                    </div>
+                    <span className="text-sm font-medium text-foreground">Visit Our Office</span>
                   </div>
                 </div>
               </Card3D>
@@ -140,8 +310,21 @@ export default function Contact() {
 
             {/* Contact Form */}
             <div className="animate-fade-in-right">
-              <Card3D variant="glow" className="p-8 lg:p-10">
-                <h3 className="font-heading text-xl font-semibold text-foreground mb-6">
+              <Card3D 
+                variant="glow" 
+                className={cn(
+                  "p-8 lg:p-10 relative overflow-hidden",
+                  "border-2 border-border/30 hover:border-primary/30",
+                  "shadow-lg hover:shadow-2xl hover:shadow-primary/10",
+                  "hover:scale-[1.01] transition-all duration-700"
+                )}
+              >
+                {/* Shimmer effect on hover */}
+                <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                </div>
+                
+                <h3 className="font-heading text-xl font-semibold text-foreground mb-6 relative z-10">
                   Send Us a Message
                 </h3>
 
@@ -151,6 +334,7 @@ export default function Contact() {
                       <Label htmlFor="firstName">First Name</Label>
                       <Input
                         id="firstName"
+                        name="firstName"
                         placeholder="John"
                         required
                         className="h-12"
@@ -160,6 +344,7 @@ export default function Contact() {
                       <Label htmlFor="lastName">Last Name</Label>
                       <Input
                         id="lastName"
+                        name="lastName"
                         placeholder="Doe"
                         required
                         className="h-12"
@@ -171,6 +356,7 @@ export default function Contact() {
                     <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="john@example.com"
                       required
@@ -182,6 +368,7 @@ export default function Contact() {
                     <Label htmlFor="phone">Phone Number</Label>
                     <Input
                       id="phone"
+                      name="phone"
                       type="tel"
                       placeholder="+91 98765 43210"
                       className="h-12"
@@ -192,6 +379,7 @@ export default function Contact() {
                     <Label htmlFor="service">Service Interested In</Label>
                     <Input
                       id="service"
+                      name="service"
                       placeholder="e.g., Brand Strategy, SEO, Social Media"
                       className="h-12"
                     />
@@ -201,6 +389,7 @@ export default function Contact() {
                     <Label htmlFor="message">Your Message</Label>
                     <Textarea
                       id="message"
+                      name="message"
                       placeholder="Tell us about your project..."
                       rows={5}
                       required

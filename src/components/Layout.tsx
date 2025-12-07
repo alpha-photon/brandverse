@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
+import { Background3D } from "./Background3D";
 
 interface LayoutProps {
   children: ReactNode;
@@ -8,9 +9,12 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-muted/30 relative">
+      {/* Unified background for entire page */}
+      <Background3D variant="mesh" />
+      
       <Navbar />
-      <main className="flex-1 pt-20">{children}</main>
+      <main className="flex-1 pt-24 relative z-10">{children}</main>
       <Footer />
     </div>
   );
