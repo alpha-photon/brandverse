@@ -76,7 +76,7 @@ export default function About() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-[85vh] flex items-center overflow-hidden max-w-full"
+        className="relative min-h-[calc(100vh-6rem)] md:min-h-[calc(100vh-6rem)] lg:min-h-screen flex items-center overflow-hidden max-w-full"
       >
         <Background3D variant="hero" />
         
@@ -94,10 +94,10 @@ export default function About() {
           }}
         />
         
-        <div className="section-container relative z-10 py-6 md:py-8 max-w-full">
-          <div className="grid lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 xl:gap-10 items-center">
+        <div className="section-container relative z-10 py-6 sm:py-8 md:py-10 lg:py-12 max-w-full">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-center">
             {/* Content */}
-            <div className="space-y-5 max-w-2xl w-full overflow-hidden">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8 max-w-2xl w-full overflow-hidden px-2 sm:px-0">
               {/* Badge with animation */}
               <div
                 className={cn(
@@ -113,12 +113,12 @@ export default function About() {
               </div>
               
               {/* Animated Headline */}
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight tracking-tight break-words overflow-hidden">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.05] sm:leading-[1.1] md:leading-[1.15] tracking-tight break-words overflow-hidden">
                 {words.map((word, index) => (
                   <span
                     key={index}
                     className={cn(
-                      "inline-block transition-all duration-1000 md:whitespace-nowrap",
+                      "block transition-all duration-1000",
                       isVisible
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-8",
@@ -127,7 +127,6 @@ export default function About() {
                     style={{ transitionDelay: `${index * 200}ms` }}
                   >
                     {word}
-                    {index < words.length - 1 && <span className="inline-block w-2 md:w-3" />}
                   </span>
                 ))}
               </h1>

@@ -128,10 +128,10 @@ ${data.message}
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden max-w-full">
+      <section className="relative min-h-[calc(100vh-6rem)] md:min-h-[calc(100vh-6rem)] lg:min-h-screen flex items-center overflow-hidden max-w-full">
         <Background3D variant="hero" />
         
-        <div className="section-container relative z-10 py-10 md:py-12 max-w-full">
+        <div className="section-container relative z-10 py-8 sm:py-10 md:py-12 lg:py-16 max-w-full">
           <div className="max-w-3xl mx-auto text-center w-full px-2">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-sm font-medium mb-6 animate-fade-in border border-primary/20">
               <Sparkles className="h-4 w-4" />
