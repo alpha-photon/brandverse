@@ -11,7 +11,7 @@ import {
   TrendingUp,
   Users,
   Zap,
-  Award,
+  Handshake,
   ArrowRight,
   Sparkles,
   LineChart,
@@ -77,9 +77,9 @@ const whyChooseUs = [
     description: "Agile strategies that deliver quickly",
   },
   {
-    icon: Award,
-    title: "Award-Winning",
-    description: "Recognized excellence in digital branding",
+    icon: Handshake,
+    title: "Trusted by Clients",
+    description: "Proven success across diverse industries",
   },
   {
     icon: Target,
@@ -221,33 +221,13 @@ export default function Index() {
                 </Button>
               </div>
 
-              {/* Stats Row */}
-              <div
-                className={cn(
-                  "flex flex-wrap gap-4 sm:gap-6 md:gap-8 pt-4 sm:pt-6 md:pt-10 transition-all duration-1000",
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                )}
-                style={{ transitionDelay: "1000ms" }}
-              >
-                {[
-                  { value: "500+", label: "Projects" },
-                  { value: "98%", label: "Satisfaction" },
-                  { value: "50+", label: "Awards" },
-                ].map((stat, index) => (
-                  <div key={index} className="group">
-                    <p className="text-2xl sm:text-3xl font-bold gradient-text group-hover:scale-110 transition-transform duration-300">
-                      {stat.value}
-                    </p>
-                    <p className="text-xs sm:text-sm text-muted-foreground">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
+             
             </div>
 
             {/* Hero SVG Illustration */}
             <div
               className={cn(
-                "relative transition-all duration-1000 lg:ml-auto lg:mr-0 w-full mt-4 sm:mt-6 md:mt-8 lg:mt-0",
+                "relative transition-all duration-1000 lg:ml-auto lg:mr-0 w-full",
                 isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
               )}
               style={{
@@ -257,7 +237,7 @@ export default function Index() {
               {/* Decorative background elements */}
               <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-br from-teal/20 via-transparent to-gold/20 rounded-3xl blur-2xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
               
-              <div className="relative w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-start justify-center p-2 sm:p-4 lg:pt-[3.5rem] xl:pt-[4.5rem]">
+              <div className="relative w-full min-h-[500px] md:min-h-[600px] flex items-center justify-center p-2 sm:p-4">
                   {/* Statistics Dashboard SVG */}
                   <svg
                     viewBox="0 0 600 450"
@@ -283,28 +263,25 @@ export default function Index() {
                     {/* Card 1: Projects */}
                     <g transform="translate(50, 20)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
                       <rect x="0" y="0" width="140" height="100" rx="12" fill="hsl(var(--card))" stroke="url(#statGrad)" strokeWidth="2" opacity="0.9" className="group-hover:opacity-100 transition-opacity" />
-                      <circle cx="70" cy="30" r="20" fill="url(#statGrad)" opacity="0.2" />
-                      <path d="M60 30 L65 35 L80 20" stroke="url(#statGrad)" strokeWidth="3" fill="none" strokeLinecap="round" />
-                      <text x="70" y="65" textAnchor="middle" className="text-2xl font-bold fill-foreground" fontSize="28" fontWeight="bold">500+</text>
-                      <text x="70" y="85" textAnchor="middle" className="text-muted-foreground" fontSize="12" fill="hsl(var(--muted-foreground))">Projects</text>
+                     
+                      <text x="70" y="55" textAnchor="middle" className="text-2xl font-bold fill-foreground" fontSize="28" fontWeight="bold">500+</text>
+                      <text x="70" y="75" textAnchor="middle" className="text-muted-foreground" fontSize="12" fill="hsl(var(--muted-foreground))">Projects</text>
                     </g>
                     
                     {/* Card 2: Satisfaction */}
                     <g transform="translate(230, 20)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
                       <rect x="0" y="0" width="140" height="100" rx="12" fill="hsl(var(--card))" stroke="url(#statGrad)" strokeWidth="2" opacity="0.9" className="group-hover:opacity-100 transition-opacity" />
-                      <circle cx="70" cy="30" r="20" fill="url(#statGrad)" opacity="0.2" />
-                      <path d="M55 30 Q70 20 85 30" stroke="url(#statGrad)" strokeWidth="3" fill="none" strokeLinecap="round" />
-                      <text x="70" y="65" textAnchor="middle" className="text-2xl font-bold fill-foreground" fontSize="28" fontWeight="bold">98%</text>
-                      <text x="70" y="85" textAnchor="middle" className="text-muted-foreground" fontSize="12" fill="hsl(var(--muted-foreground))">Satisfaction</text>
+                     
+                      <text x="70" y="55" textAnchor="middle" className="text-2xl font-bold fill-foreground" fontSize="28" fontWeight="bold">98%</text>
+                      <text x="70" y="75" textAnchor="middle" className="text-muted-foreground" fontSize="12" fill="hsl(var(--muted-foreground))">Satisfaction</text>
                     </g>
                     
                     {/* Card 3: Awards */}
                     <g transform="translate(410, 20)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
                       <rect x="0" y="0" width="140" height="100" rx="12" fill="hsl(var(--card))" stroke="url(#statGrad)" strokeWidth="2" opacity="0.9" className="group-hover:opacity-100 transition-opacity" />
-                      <circle cx="70" cy="30" r="20" fill="url(#statGrad)" opacity="0.2" />
-                      <path d="M70 15 L75 25 L85 20 L80 30 L90 35 L70 32 L50 35 L60 30 L55 20 L65 25 Z" fill="url(#statGrad)" />
-                      <text x="70" y="65" textAnchor="middle" className="text-2xl font-bold fill-foreground" fontSize="28" fontWeight="bold">50+</text>
-                      <text x="70" y="85" textAnchor="middle" className="text-muted-foreground" fontSize="12" fill="hsl(var(--muted-foreground))">Awards</text>
+                     
+                      <text x="70" y="55" textAnchor="middle" className="text-2xl font-bold fill-foreground" fontSize="28" fontWeight="bold">50+</text>
+                      <text x="70" y="75" textAnchor="middle" className="text-muted-foreground" fontSize="12" fill="hsl(var(--muted-foreground))">Awards</text>
                     </g>
                     
                     {/* Central Growth Chart */}
@@ -456,8 +433,7 @@ export default function Index() {
                   {/* Enhanced arrow indicator */}
                   <div className="mt-auto pt-2">
                     <div className="flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-500">
-                      <span className="text-sm font-semibold">Learn more</span>
-                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                     
                       <div className="h-px flex-1 bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
                   </div>

@@ -217,18 +217,7 @@ export default function Services() {
                 )}
                 style={{ transitionDelay: "1000ms" }}
               >
-                {[
-                  { value: "7+", label: "Services" },
-                  { value: "500+", label: "Projects" },
-                  { value: "98%", label: "Success Rate" },
-                ].map((stat, index) => (
-                  <div key={index} className="group">
-                    <p className="text-3xl font-bold gradient-text group-hover:scale-110 transition-transform duration-300">
-                      {stat.value}
-                    </p>
-                    <p className="text-sm text-muted-foreground">{stat.label}</p>
-                  </div>
-                ))}
+               
               </div>
             </div>
 
@@ -269,40 +258,25 @@ export default function Services() {
                   {/* Card 1: Brand Strategy */}
                   <g transform="translate(50, 50)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
                     <rect x="0" y="0" width="140" height="100" rx="12" fill="hsl(var(--card))" stroke="url(#serviceGrad)" strokeWidth="2" opacity="0.9" className="group-hover:opacity-100 transition-opacity" />
-                    <circle cx="70" cy="30" r="20" fill="url(#serviceGrad)" opacity="0.2" />
-                    {/* Lightbulb Icon */}
-                    <g transform="translate(70, 30)">
-                      <circle cx="0" cy="-5" r="8" fill="url(#serviceGrad)" opacity="0.7" />
-                      <rect x="-4" y="5" width="8" height="6" rx="2" fill="url(#serviceGrad)" opacity="0.7" />
-                    </g>
-                    <text x="70" y="65" textAnchor="middle" fontSize="18" fontWeight="bold" fill="hsl(var(--foreground))">Brand</text>
-                    <text x="70" y="85" textAnchor="middle" fontSize="12" fill="hsl(var(--muted-foreground))">Strategy</text>
+                   
+                    <text x="70" y="55" textAnchor="middle" fontSize="18" fontWeight="bold" fill="hsl(var(--foreground))">Brand</text>
+                    <text x="70" y="75" textAnchor="middle" fontSize="12" fill="hsl(var(--muted-foreground))">Strategy</text>
                   </g>
                   
                   {/* Card 2: Digital Marketing */}
                   <g transform="translate(230, 50)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
                     <rect x="0" y="0" width="140" height="100" rx="12" fill="hsl(var(--card))" stroke="url(#serviceGrad)" strokeWidth="2" opacity="0.9" className="group-hover:opacity-100 transition-opacity" />
-                    <circle cx="70" cy="30" r="20" fill="url(#serviceGrad)" opacity="0.2" />
-                    {/* Target Icon */}
-                    <g transform="translate(70, 30)">
-                      <circle cx="0" cy="0" r="12" stroke="url(#serviceGrad)" strokeWidth="2" fill="none" />
-                      <circle cx="0" cy="0" r="6" stroke="url(#serviceGrad)" strokeWidth="2" fill="none" />
-                      <circle cx="0" cy="0" r="2" fill="url(#serviceGrad)" />
-                    </g>
-                    <text x="70" y="65" textAnchor="middle" fontSize="18" fontWeight="bold" fill="hsl(var(--foreground))">Digital</text>
-                    <text x="70" y="85" textAnchor="middle" fontSize="12" fill="hsl(var(--muted-foreground))">Marketing</text>
+                   
+                    <text x="70" y="55" textAnchor="middle" fontSize="18" fontWeight="bold" fill="hsl(var(--foreground))">Digital</text>
+                    <text x="70" y="75" textAnchor="middle" fontSize="12" fill="hsl(var(--muted-foreground))">Marketing</text>
                   </g>
                   
                   {/* Card 3: SEO & Growth */}
                   <g transform="translate(410, 50)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
                     <rect x="0" y="0" width="140" height="100" rx="12" fill="hsl(var(--card))" stroke="url(#serviceGrad)" strokeWidth="2" opacity="0.9" className="group-hover:opacity-100 transition-opacity" />
-                    <circle cx="70" cy="30" r="20" fill="url(#serviceGrad)" opacity="0.2" />
-                    {/* Growth Chart Icon */}
-                    <g transform="translate(70, 30)">
-                      <path d="M-10 10 L-5 5 L0 8 L5 2 L10 -2" stroke="url(#serviceGrad)" strokeWidth="2" fill="none" strokeLinecap="round" />
-                    </g>
-                    <text x="70" y="65" textAnchor="middle" fontSize="18" fontWeight="bold" fill="hsl(var(--foreground))">SEO &amp;</text>
-                    <text x="70" y="85" textAnchor="middle" fontSize="12" fill="hsl(var(--muted-foreground))">Growth</text>
+                   
+                    <text x="70" y="55" textAnchor="middle" fontSize="18" fontWeight="bold" fill="hsl(var(--foreground))">SEO &amp;</text>
+                    <text x="70" y="75" textAnchor="middle" fontSize="12" fill="hsl(var(--muted-foreground))">Growth</text>
                   </g>
                   
                   {/* Central Services Card */}
@@ -457,8 +431,7 @@ export default function Services() {
                     "mt-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-x-0 group-hover:translate-x-2 transition-all duration-500",
                     service.color === 'teal' ? "text-teal" : "text-gold"
                   )}>
-                    <span className="text-xs font-medium">Learn more</span>
-                    <ArrowRight className="h-3 w-3" />
+                   
                   </div>
                 </div>
                 

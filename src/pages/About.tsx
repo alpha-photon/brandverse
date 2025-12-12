@@ -174,27 +174,7 @@ export default function About() {
                 </Button>
               </div>
 
-              {/* Stats Row */}
-              <div
-                className={cn(
-                  "flex flex-wrap gap-6 pt-6 transition-all duration-1000",
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                )}
-                style={{ transitionDelay: "1000ms" }}
-              >
-                {[
-                  { value: "500+", label: "Projects" },
-                  { value: "98%", label: "Satisfaction" },
-                  { value: "50+", label: "Awards" },
-                ].map((stat, index) => (
-                  <div key={index} className="group">
-                    <p className="text-3xl font-bold gradient-text group-hover:scale-110 transition-transform duration-300">
-                      {stat.value}
-                    </p>
-                    <p className="text-sm text-muted-foreground">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
+             
             </div>
 
             {/* Hero SVG Illustration */}
@@ -234,41 +214,27 @@ export default function About() {
                   {/* Card 1: Our Team */}
                   <g transform="translate(50, 50)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
                     <rect x="0" y="0" width="140" height="100" rx="12" fill="hsl(var(--card))" stroke="url(#aboutGrad)" strokeWidth="2" opacity="0.9" className="group-hover:opacity-100 transition-opacity" />
-                    <circle cx="70" cy="30" r="20" fill="url(#aboutGrad)" opacity="0.2" />
+                   
                     {/* Team Icon */}
-                    <g transform="translate(70, 30)">
-                      <circle cx="0" cy="0" r="8" fill="url(#aboutGrad)" opacity="0.6" />
-                      <circle cx="-8" cy="0" r="6" fill="url(#aboutGrad)" opacity="0.5" />
-                      <circle cx="8" cy="0" r="6" fill="url(#aboutGrad)" opacity="0.5" />
-                    </g>
-                    <text x="70" y="65" textAnchor="middle" fontSize="20" fontWeight="bold" fill="hsl(var(--foreground))">Expert</text>
-                    <text x="70" y="85" textAnchor="middle" fontSize="12" fill="hsl(var(--muted-foreground))">Team</text>
+                   
+                    <text x="70" y="55" textAnchor="middle" fontSize="20" fontWeight="bold" fill="hsl(var(--foreground))">Expert</text>
+                    <text x="70" y="75" textAnchor="middle" fontSize="12" fill="hsl(var(--muted-foreground))">Team</text>
                   </g>
                   
                   {/* Card 2: Our Mission */}
                   <g transform="translate(230, 50)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
                     <rect x="0" y="0" width="140" height="100" rx="12" fill="hsl(var(--card))" stroke="url(#aboutGrad)" strokeWidth="2" opacity="0.9" className="group-hover:opacity-100 transition-opacity" />
-                    <circle cx="70" cy="30" r="20" fill="url(#aboutGrad)" opacity="0.2" />
-                    {/* Target/Mission Icon */}
-                    <g transform="translate(70, 30)">
-                      <circle cx="0" cy="0" r="15" stroke="url(#aboutGrad)" strokeWidth="2" fill="none" />
-                      <circle cx="0" cy="0" r="8" stroke="url(#aboutGrad)" strokeWidth="2" fill="none" />
-                      <circle cx="0" cy="0" r="3" fill="url(#aboutGrad)" />
-                    </g>
-                    <text x="70" y="65" textAnchor="middle" fontSize="20" fontWeight="bold" fill="hsl(var(--foreground))">Mission</text>
-                    <text x="70" y="85" textAnchor="middle" fontSize="12" fill="hsl(var(--muted-foreground))">Driven</text>
+                    
+                    <text x="70" y="55" textAnchor="middle" fontSize="20" fontWeight="bold" fill="hsl(var(--foreground))">Mission</text>
+                    <text x="70" y="75" textAnchor="middle" fontSize="12" fill="hsl(var(--muted-foreground))">Driven</text>
                   </g>
                   
                   {/* Card 3: Our Values */}
                   <g transform="translate(410, 50)" className="group-hover:translate-y-[-5px] transition-transform duration-300">
                     <rect x="0" y="0" width="140" height="100" rx="12" fill="hsl(var(--card))" stroke="url(#aboutGrad)" strokeWidth="2" opacity="0.9" className="group-hover:opacity-100 transition-opacity" />
-                    <circle cx="70" cy="30" r="20" fill="url(#aboutGrad)" opacity="0.2" />
-                    {/* Heart/Values Icon */}
-                    <g transform="translate(70, 30)">
-                      <path d="M0 -8 C-6 -8 -10 -4 -10 0 C-10 4 0 12 0 12 C0 12 10 4 10 0 C10 -4 6 -8 0 -8 Z" fill="url(#aboutGrad)" opacity="0.7" />
-                    </g>
-                    <text x="70" y="65" textAnchor="middle" fontSize="20" fontWeight="bold" fill="hsl(var(--foreground))">Core</text>
-                    <text x="70" y="85" textAnchor="middle" fontSize="12" fill="hsl(var(--muted-foreground))">Values</text>
+                   
+                    <text x="70" y="55" textAnchor="middle" fontSize="20" fontWeight="bold" fill="hsl(var(--foreground))">Core</text>
+                    <text x="70" y="75" textAnchor="middle" fontSize="12" fill="hsl(var(--muted-foreground))">Values</text>
                   </g>
                   
                   {/* Central About Us Card */}

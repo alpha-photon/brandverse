@@ -335,7 +335,7 @@ ${data.message}
                       <Input
                         id="firstName"
                         name="firstName"
-                        placeholder="John"
+                        placeholder="Your first name"
                         required
                         className="h-12"
                       />
@@ -345,7 +345,7 @@ ${data.message}
                       <Input
                         id="lastName"
                         name="lastName"
-                        placeholder="Doe"
+                        placeholder="Your last name"
                         required
                         className="h-12"
                       />
@@ -358,7 +358,7 @@ ${data.message}
                       id="email"
                       name="email"
                       type="email"
-                      placeholder="john@example.com"
+                      placeholder="your@email.com"
                       required
                       className="h-12"
                     />
@@ -370,7 +370,7 @@ ${data.message}
                       id="phone"
                       name="phone"
                       type="tel"
-                      placeholder="+91 98765 43210"
+                      placeholder="Your phone number"
                       className="h-12"
                     />
                   </div>
@@ -380,7 +380,7 @@ ${data.message}
                     <Input
                       id="service"
                       name="service"
-                      placeholder="e.g., Brand Strategy, SEO, Social Media"
+                      placeholder="Service you're interested in"
                       className="h-12"
                     />
                   </div>
@@ -390,7 +390,7 @@ ${data.message}
                     <Textarea
                       id="message"
                       name="message"
-                      placeholder="Tell us about your project..."
+                      placeholder="Tell us about your project"
                       rows={5}
                       required
                       className="resize-none"
